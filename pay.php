@@ -78,7 +78,7 @@
                 Total Amount: <?php echo($finalAmount);?> &nbsp;  <?php echo($currency);?> <br/>
             </h4>
             <br/>
-            Return to <a href="index.php">home page</a>.
+            Return to <a href="index.html">home page</a>.
         </div>
         <div class="col-md-4"></div>
     </div>
