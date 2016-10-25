@@ -13,8 +13,6 @@ if (session_id() !== "") {
     */
 $hostName = $_SERVER['HTTP_HOST'];
 $appName = explode("/", $_SERVER['REQUEST_URI'])[1];
-//Used to do correct redirects
-$extension_url = "Front End";
 $cancelUrl= "http://".$hostName."/".$appName."/cancel.php";
 $payUrl = "http://".$hostName."/".$appName."/pay.php";
 $placeOrderUrl = "http://".$hostName."/".$appName."/placeOrder.php";

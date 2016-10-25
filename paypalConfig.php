@@ -10,9 +10,9 @@
     define("SANDBOX_ENDPOINT", "https://api.sandbox.paypal.com");
     define("LIVE_ENDPOINT", "https://api.paypal.com");
 
+    
     //Merchant ID
     define("MERCHANT_ID","tixatuva-facilitator@gmail.com");
-
     //PayPal REST App SANDBOX Client Id and Client Secret
     define("SANDBOX_CLIENT_ID" , "AYDHTCyPudX3UvgVbUC38lNQgO3Iv6J1PP8MkK1vUvCxLJDuVpRAuAEErNDspACsErGw1ErbehkfIi6z");
     define("SANDBOX_CLIENT_SECRET", "EHre0v5wZqKjVN9Pe9NBJws1N1o-CTaiiK5w0rPIjxnUTIKGrwmqBXuObBLxNrAw7KvqzEHnOPL3mVap");

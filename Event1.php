@@ -1,53 +1,76 @@
 <?php
-$quantity = "";
-$price = number_format(1.00, 2, '.', ',');
-$emailErr="";
-$emailerror_css="";
-$total = number_format(0.00, 2, '.', ',');
+	session_start();
+	$quantity = "";
+	$price = number_format(1.00, 2, '.', ',');
+	$result = "";
+	$emailErr="";
+	$emailerror_css="";
+	$total = number_format(0.00, 2, '.', ',');
 
-function between ($this, $that, $inthat){
-    return before($that, after($this, $inthat));
-};
-function after ($this, $inthat){
-    if (!is_bool(strpos($inthat, $this)))
-    return substr($inthat, strpos($inthat,$this)+strlen($this));
-};
-function before ($this, $inthat){
-    return substr($inthat, 0, strpos($inthat, $this));
-};
+	//Start our database
+	$host = "127.0.0.1";
+	$name = "user_info";
+	$password = "";
+	$user = "root";
+	$port = 3306;
 
-if (!empty($_POST["quantity"])) {
-   $quantity = $_POST["quantity"];
-   $total = number_format((intval($quantity) * intval($price)), 2, '.', ',');
-  }
-if(!empty($_POST['email'])){
-  	$email = $_POST["email"];
-  
-  if(!preg_match('/@/', $email)){
-        $emailErr = "Email must contain a @";
-        $emailerror_css='border-color:red; border-width:medium';
-    }elseif(!preg_match('/\./', $email)){
-    	$emailErr = "Email must contain a '.' ";
-    	$emailerror_css = 'border-color:red; border-width:medium';
-    }elseif(preg_match('/@/', substr($email, 0, 2))){
-    	$emailErr = "Email name is not long enough";
-    	$emailerror_css = 'border-color:red; border-width:medium';
-    }elseif(!ctype_alpha(substr($email, -2, 2))){
-    	$emailErr = "Email domain contains invalid characters";
-    	$emailerror_css = 'border-color:red; border-width:medium';
-    }elseif(!ctype_alpha(between('@', '.', $email)) || strlen(between('@', '.', $email))<2){
-    	$emailErr = "Website name must be at least 2 characters";
-    	$emailerror_css = 'border-color:red; border-width:medium';
-    }elseif(preg_match('/^@{1}$/',$zip)){
-    	$emailErr = "Email cannot contain more than one @";
-    	$emailerror_css = 'border-color:red; border-width:medium';
-    }else $emailErr ="";
-  }
+	$connection = mysqli_connect($host, $user, $password, $name, $port) or die(mysql_error());
+
+	if($connection && !empty($_POST['email'])){
+		$email = $_POST['email'];
+		$result = mysqli_query($connection, "SELECT * FROM student WHERE email = '$email'");
+	}
+
+	function between ($this, $that, $inthat){
+	    return before($that, after($this, $inthat));
+	};
+	function after ($this, $inthat){
+	    if (!is_bool(strpos($inthat, $this)))
+	    return substr($inthat, strpos($inthat,$this)+strlen($this));
+	};
+	function before ($this, $inthat){
+	    return substr($inthat, 0, strpos($inthat, $this));
+	};
+
+	if (!empty($_POST["quantity"])) {
+	   $quantity = $_POST["quantity"];
+	   $total = number_format((intval($quantity) * intval($price)), 2, '.', ',');
+	  }
+	if(!empty($_POST['email'])){
+	  	$email = $_POST["email"];
+	  
+	  if(!preg_match('/@/', $email)){
+	        $emailErr = "Email must contain a @";
+	        $emailerror_css='border-color:red; border-width:medium';
+	    }elseif(!preg_match('/\./', $email)){
+	    	$emailErr = "Email must contain a '.' ";
+	    	$emailerror_css = 'border-color:red; border-width:medium';
+	    }elseif(preg_match('/@/', substr($email, 0, 2))){
+	    	$emailErr = "Email name is not long enough";
+	    	$emailerror_css = 'border-color:red; border-width:medium';
+	    }elseif(!ctype_alpha(substr($email, -2, 2))){
+	    	$emailErr = "Email domain contains invalid characters";
+	    	$emailerror_css = 'border-color:red; border-width:medium';
+	    }elseif(!ctype_alpha(between('@', '.', $email)) || strlen(between('@', '.', $email))<2){
+	    	$emailErr = "Website name must be at least 2 characters";
+	    	$emailerror_css = 'border-color:red; border-width:medium';
+	    }elseif(preg_match('/^@{1}$/',$email)){
+	    	$emailErr = "Email cannot contain more than one @";
+	    	$emailerror_css = 'border-color:red; border-width:medium';
+	    }elseif(mysqli_num_rows($result) == 0){
+	    	$emailErr = "Email not found, please register as a student";
+	    	$emailerror_css = 'border-color:red; border-width:medium';
+	    }else $emailErr ="";
+	  }
 
 
-if(isset($_POST['purchase'])&& !$emailErr) {
-	header('success.php');
-}
+
+	if(isset($_POST['purchase'])&& !$emailErr) {
+		$_SESSION['email'] = $_POST['email'];
+	}
+
+	$connection->close();
+
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -57,6 +80,7 @@ if(isset($_POST['purchase'])&& !$emailErr) {
 -->
 <html>
 	<head>
+
 		<title>Event1</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -81,7 +105,6 @@ if(isset($_POST['purchase'])&& !$emailErr) {
 						</ul>
 					</nav>
 				</header>
-
 
 				<!-- Main -->
 					<div id="main" class="alt">
@@ -129,11 +152,36 @@ if(isset($_POST['purchase'])&& !$emailErr) {
 										<p style="float:left; margin-top:-50px"><ul>
                                     		<li>Location: Rice Hall</li>
                                     		<li>Date/Time: Somwhere @sometime</li>
-                                    		<br><br>
                                     	</ul>
                                     	</p>
-										<p><input type="submit" style="float:right; margin-top:25px" name = "purchase" value="Buy" class="special" /></p>
+										<p>
+							
 										</form>
+
+										<?php if(isset($email) && !$emailErr) : ?>
+											<form id="myContainer" action="startPayment.php" method="POST">
+										    <input type="hidden" name="csrf" value="<?php echo($_SESSION['csrf']);?>"/>
+										    Camera:<input type="text" name="camera_amount" value="<?php echo($_POST['quantity']);?>" readonly></input><br>
+										    Tax:<input type="text" name="tax" value="0" readonly></input><br>
+										    Insurance:<input type="text" name="insurance" value="0" readonly></input><br>
+										    Handling:<input type="text" name="handling_fee" value="0" readonly></input><br>
+										    Est. Shipping:<input type="text" name="estimated_shipping" value="0" readonly></input><br>
+										    Shipping Discount:<input type="text" name="shipping_discount" value="0" readonly></input><br>
+										    Total:<input type="text" name="total_amount" value="0" readonly></input><br>
+										    Currency:<input type="text" name="currencyCodeType" value="USD" readonly></input><br>
+										</form>
+
+										<script type="text/javascript">
+										   window.paypalCheckoutReady = function () {
+										       paypal.checkout.setup('Your merchant id', {
+										           container: 'myContainer', //{String|HTMLElement|Array} where you want the PayPal button to reside
+										           environment: 'sandbox' //or 'production' depending on your environment
+										       });
+										   };
+</script>
+<script src="//www.paypalobjects.com/api/checkout.js" async></script>
+										<?php endif; ?>
+							
                                     </div>
 								
 							</section>
