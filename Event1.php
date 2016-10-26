@@ -1,5 +1,7 @@
 <?php
-	session_start();
+	 if (session_id() == "")
+        session_start();
+
 	$quantity = "";
 	$price = number_format(1.00, 2, '.', ',');
 	$result = "";
@@ -65,7 +67,7 @@
 
 
 
-	if(isset($_POST['purchase'])&& !$emailErr) {
+	if(isset($_POST['email'])&& !$emailErr) {
 		$_SESSION['email'] = $_POST['email'];
 	}
 
@@ -161,14 +163,14 @@
 										<?php if(isset($email) && !$emailErr) : ?>
 											<form id="myContainer" action="startPayment.php" method="POST">
 										    <input type="hidden" name="csrf" value="<?php echo($_SESSION['csrf']);?>"/>
-										    Camera:<input type="text" name="camera_amount" value="<?php echo($_POST['quantity']);?>" readonly></input><br>
-										    Tax:<input type="text" name="tax" value="0" readonly></input><br>
-										    Insurance:<input type="text" name="insurance" value="0" readonly></input><br>
-										    Handling:<input type="text" name="handling_fee" value="0" readonly></input><br>
-										    Est. Shipping:<input type="text" name="estimated_shipping" value="0" readonly></input><br>
-										    Shipping Discount:<input type="text" name="shipping_discount" value="0" readonly></input><br>
-										    Total:<input type="text" name="total_amount" value="0" readonly></input><br>
-										    Currency:<input type="text" name="currencyCodeType" value="USD" readonly></input><br>
+										    <input type="hidden" name="camera_amount" value="<?php echo($_POST['quantity']);?>" readonly></input><br>
+										    <input type="hidden" name="tax" value="0" readonly></input>
+										    <input type="hidden" name="insurance" value="0" readonly></input>
+										    <input type="hidden" name="handling_fee" value="0" readonly></input>
+										    <input type="hidden" name="estimated_shipping" value="0" readonly></input>
+										    <input type="hidden" name="shipping_discount" value="0" readonly></input>
+										    <input type="hidden" name="total_amount" value="0" readonly></input>
+										    <input type="hidden" name="currencyCodeType" value="USD" readonly></input>
 										</form>
 
 										<script type="text/javascript">
