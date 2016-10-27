@@ -29,18 +29,18 @@
             die('Session expired');
         }
     }
-	
-	// REST validation; route non-HTTP 200 to error page
-	if ($response['http_code'] != 200 && $response['http_code'] != 201) {		
-		$_SESSION['error'] = $response;
-		header( 'Location: error.php');
-		
-		// need exit() here to maintain session data after redirect to error page
-		exit();
-	}
-	
-	$json_response = $response['json']; 
-	
+    
+    // REST validation; route non-HTTP 200 to error page
+    if ($response['http_code'] != 200 && $response['http_code'] != 201) {       
+        $_SESSION['error'] = $response;
+        header( 'Location: error.php');
+        
+        // need exit() here to maintain session data after redirect to error page
+        exit();
+    }
+    
+    $json_response = $response['json']; 
+    
     $paymentID= $json_response['id'];
     $paymentState = $json_response['state'];
     $finalAmount = $json_response['transactions'][0]['amount']['total'];
@@ -56,37 +56,124 @@
     $state= filter_var($json_response['payer']['payer_info']['shipping_address']['state'],FILTER_SANITIZE_SPECIAL_CHARS);
     $postalCode = filter_var($json_response['payer']['payer_info']['shipping_address']['postal_code'],FILTER_SANITIZE_SPECIAL_CHARS);
     $countryCode= filter_var($json_response['payer']['payer_info']['shipping_address']['country_code'],FILTER_SANITIZE_SPECIAL_CHARS);
-	
-    include('header.php');
+    
 ?>
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <h4>
-                <?php echo($payerFirstName.' '.$payerLastName.', Thank you for your Order!');?><br/><br/>
-                Shipping Address: </h4>
-                <?php echo($recipientName);?><br/>
-                <?php echo($addressLine1);?><br/>
-                <?php echo($addressLine2);?><br/>
-                <?php echo($city);?><br/>
-                <?php echo($state.'-'.$postalCode);?><br/>
-                <?php echo($countryCode);?>
 
-                <h4>Payment ID: <?php echo($paymentID);?> <br/>
-		Transaction ID : <?php echo($transactionID);?> <br/>
-                State : <?php echo($paymentState);?> <br/>
-                Total Amount: <?php echo($finalAmount);?> &nbsp;  <?php echo($currency);?> <br/>
-            </h4>
-            <br/>
-            Return to <a href="index.php">home page</a>.
-        </div>
-        <div class="col-md-4"></div>
-    </div>
+
+<!DOCTYPE HTML>
+<!--
+    Forty by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+
+
+<html>
+    <head>
+        <title>Sign In</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    </head>
+    <body>
+
+            <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Header -->
+            <header id="header" class="alt">
+                <a href="index.html"><img src = images/4753logo.png></a>
+                <nav id="nav">
+                    <ul>
+                        <li class="current"><a href="index.html">Home</a></li>
+                        <li class="current"><a href="aboutus.html">About Us</a></li>
+                        <li><<a href="student_sign_in.php" class="button special">Sign Up</a></li>
+                    </ul>
+                </nav>
+            </header>
+            
+            <!-- Main -->
+            <center>
+                <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <h4>
+                        <?php echo($payerFirstName.' '.$payerLastName.', Thank you for your Order!');?><br/><br/>
+                        Shipping Address: </h4>
+                        <?php echo($recipientName);?><br/>
+                        <?php echo($addressLine1);?><br/>
+                        <?php echo($addressLine2);?><br/>
+                        <?php echo($city);?><br/>
+                        <?php echo($state.'-'.$postalCode);?><br/>
+                        <?php echo($countryCode);?>
+
+                        <h4>Payment ID: <?php echo($paymentID);?> <br/>
+                Transaction ID : <?php echo($transactionID);?> <br/>
+                        State : <?php echo($paymentState);?> <br/>
+                        Total Amount: <?php echo($finalAmount);?> &nbsp;  <?php echo($currency);?> <br/>
+                    </h4>
+                    <br/>
+                    Return to <a href="index.html">home page</a>.
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+                <div id="main" class="alt"></div>
+                    <h3> Sending Confirmation Email: </h3>
+                    <?php
+                        // the message
+                        $msg = "Thank you for your order ".$payerFirstName.", your transaction number is ".$transactionID;
+
+                        // use wordwrap() if lines are longer than 70 characters
+                        $msg = wordwrap($msg,70);
+                        
+                        // send email
+                        mail($_SESSION['email'],"Thank you for your order",$msg);
+                        echo "sending";
+                    ?>
+                    <br><br>
+                </div>
+            </center>
+            
+            <center>
+                <div>
+                    <a href="#" class = "button special">Browse Events! </a>
+                    <a href="aboutus.html" class = "button special">Learn more!</a>
+                    <br><br><br>
+                </div>
+            </center>
+            
+
+                <!-- Footer -->
+                    <footer id="footer">
+                        <div class="inner">
+                            <ul class="copyright">
+                                <li>&copy; Tix on Grounds</li>
+                                <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+                                
+                            </ul>
+                        </div>
+                    </footer>
+
+            </div>
+
+        <!-- Scripts -->
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/jquery.scrolly.min.js"></script>
+            <script src="assets/js/jquery.scrollex.min.js"></script>
+            <script src="assets/js/skel.min.js"></script>
+            <script src="assets/js/util.js"></script>
+            <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+            <script src="assets/js/main.js"></script>
+
+    </body>
+</html>
+
 <?php
     if (session_id() !== "") {
                session_unset();
                session_destroy();
             }
-    include('footer.php');
 ?>
-
