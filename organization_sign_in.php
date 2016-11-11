@@ -4,20 +4,26 @@
 $host = "127.0.0.1";
 $name = "user_info";
 $password = "";
-$user = "bgreenawald";
+$user = "root";
 $port = 3306;
 
-$connection = mysqli_connect($host, $user, $pass, $name, $port) or die(mysql_error());
+$connection = mysqli_connect($host, $user, $password, $name, $port) or die(mysql_error());
 
 //Retrieve Our Information
 
-$name = $_POST["name"];
-$email = $_POST["email"];
-$address = $_POST["address"];
-$city = $_POST["city"];
-$state = $_POST["state"];
-$zip = $_POST["zip"];
+$name = isset($_POST["name"]) ? $_POST['email'] : '';
+$email = isset($_POST["email"]) ? $_POST["email"] : '';
+$address = isset($_POST["address"]) ? $_POST["address"] : '';
+$city = isset($_POST["city"]) ? $_POST["city"] : '';
+$state = isset($_POST["state"]) ? $_POST["state"] : '';
+$zip = isset($_POST["zip"]) ? $_POST["zip"] : 0;
 
+$nameErr = "";
+$emailErr = "";
+$addErr = "";
+$cityErr = "";
+$stateErr = "";
+$zipErr = "";
 /* TODO:
 	might want to change messages themselves
 	once we decide on a correct format (Callie) will update organization_sign_in.php
@@ -128,10 +134,10 @@ if(isset($_POST['sendfeedback'])) {
 
 			<!-- Header -->
 			<header id="header" class="alt">
-				<a href="index.html"><img src = images/4753logo.png></a>
+				<a href="index.php"><img src = images/4753logo.png></a>
 				<nav id="nav">
 					<ul>
-						<li class="current"><a href="index.html">Home</a></li>
+						<li class="current"><a href="index.php">Home</a></li>
 						<li class="current"><a href="aboutus.html">About Us</a></li>
 						<li><a href="student_sign_in.php" class="button special">Sign Up</a></li>
 					</ul>

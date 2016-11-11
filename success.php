@@ -24,12 +24,12 @@
 
 			<!-- Header -->
 			<header id="header" class="alt">
-				<a href="index.html"><img src = images/4753logo.png></a>
+				<a href="index.php"><img src = images/4753logo.png></a>
 				<nav id="nav">
 					<ul>
 						<li class="current"><a href="index.php">Home</a></li>
 						<li class="current"><a href="aboutus.html">About Us</a></li>
-						<li><<a href="student_sign_in.php" class="button special">Sign Up</a></li>
+						<li><a href="student_sign_in.php" class="button special">Sign Up</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -38,24 +38,13 @@
 			<center>
 				<div id="main" class="alt"></div>
 					<h3> You have successfully signed up!</h3>
-					<?php
-						// the message
-						$msg = "First line of text\nSecond line of text";
-
-						// use wordwrap() if lines are longer than 70 characters
-						$msg = wordwrap($msg,70);
-						
-						// send email
-						mail("bgreenawald@gmail.com","My subject",$msg);
-						echo "sending";
-					?>
 					<br><br>
 				</div>
 			</center>
 			
 			<center>
 			    <div>
-			        <a href="#" class = "button special">Browse Events! </a>
+			        <a href="Browse.html" class = "button special">Browse Events! </a>
 					<a href="aboutus.html" class = "button special">Learn more!</a>
 			        <br><br><br>
 			    </div>

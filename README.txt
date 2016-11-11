@@ -1,7 +1,7 @@
 CHECKOUT WITH PAYPAL REST API DEMO
 
 1) Download PHP server.
-Use a server such as XAMPP (https://www.apachefriends.org/index.html) to be able to host the Demo code sample.
+Use a server such as XAMPP (https://www.apachefriends.org/index.php) to be able to host the Demo code sample.
 
 2) Browse to the htdocs directory of xampp. Unzip the downloaded demo code folder and place it in this htdocs directory.
 

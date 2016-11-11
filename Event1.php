@@ -98,10 +98,10 @@
 
 				<!-- Header -->
 				<header id="header" class="alt">
-					<a href="index.html"><img src = images/4753logo.png></a>
+					<a href="index.php"><img src = images/4753logo.png></a>
 					<nav id="nav">
 						<ul>
-							<li class="current"><a href="index.html">Home</a></li>
+							<li class="current"><a href="index.php">Home</a></li>
 							<li class="current"><a href="aboutus.html">About Us</a></li>
 							<li><a href="student_sign_in.php" class="button special">Sign Up</a></li>
 						</ul>
@@ -127,13 +127,13 @@
 	                                    <table id= "cart" style="width:600px; float:right; margin-top:-100px">
 	                                          <thead>
 											    <tr>
-											      <th colspan="2">Buy Tickets</th>
+											      <th colspan="2"><stong>Buy Tickets<stong></th>
 											    </tr>
 											  </thead>
 										    <tbody>
 										    <tr>
 										      <td style="width: 125px"><?PHP echo '$'.$price; ?></td>
-										      <td style="width: 475px"><input type="number" id="quantity" name = "quantity" min="1" max="100" value="<?PHP if(isset($_POST['quantity'])) echo htmlspecialchars($_POST['quantity']); ?>" required/>    <input type="submit" value="select quantity" class="button" style="width:5px;height:43px;"></td>
+										      <td style="width: 475px"><input type="number" id="quantity" name = "quantity" min="1" max="100" value="<?PHP if(isset($_POST['quantity'])) echo htmlspecialchars($_POST['quantity']); ?>" required/>    </td>
 										    </tr>
 										  </tbody>
 										  <tfoot>
@@ -148,43 +148,53 @@
 													style="<?php echo $emailerror_css; ?>"
 													required/>
 												</td>
+
+										    </tr>
+										    <tr>
+										    	<td></td>
+										    	<td><input type="submit" value="select quantity" class="button" ></td>
 										    </tr>
 										  </tfoot>
 										</table>
 										<p style="float:left; margin-top:-50px"><ul>
                                     		<li>Location: Rice Hall</li>
-                                    		<li>Date/Time: Somwhere @sometime</li>
+                                    		<li>Date/Time: Somwhere sometime</li>
                                     	</ul>
                                     	</p>
-										<p>
-							
-										</form>
+                                    	</form>
+                      					<br>
+                                    	
 
-										<?php if(isset($email) && !$emailErr) : ?>
-											<form id="myContainer" action="startPayment.php" method="POST">
-										    <input type="hidden" name="csrf" value="<?php echo($_SESSION['csrf']);?>"/>
-										    <input type="hidden" name="camera_amount" value="<?php echo($_POST['quantity']);?>" readonly></input><br>
-										    <input type="hidden" name="tax" value="0" readonly></input>
-										    <input type="hidden" name="insurance" value="0" readonly></input>
-										    <input type="hidden" name="handling_fee" value="0" readonly></input>
-										    <input type="hidden" name="estimated_shipping" value="0" readonly></input>
-										    <input type="hidden" name="shipping_discount" value="0" readonly></input>
-										    <input type="hidden" name="total_amount" value="0" readonly></input>
-										    <input type="hidden" name="currencyCodeType" value="USD" readonly></input>
-										</form>
+                                    	<div style="text-align: right; margin-right:250px">
+											<p>
+											<?php if(isset($email) && !$emailErr) : ?>
+												<form id="myContainer" action="startPayment.php" method="POST">
+											    <input type="hidden" name="csrf" value="<?php echo($_SESSION['csrf']);?>"/>
+											    <input type="hidden" name="camera_amount" value="<?php echo($_POST['quantity']);?>" readonly></input><br>
+											    <input type="hidden" name="tax" value="0" readonly></input>
+											    <input type="hidden" name="insurance" value="0" readonly></input>
+											    <input type="hidden" name="handling_fee" value="0" readonly></input>
+											    <input type="hidden" name="estimated_shipping" value="0" readonly></input>
+											    <input type="hidden" name="shipping_discount" value="0" readonly></input>
+											    <input type="hidden" name="total_amount" value="0" readonly></input>
+											    <input type="hidden" name="currencyCodeType" value="USD" readonly></input>
+											</form>
+											
+											<script type="text/javascript">
+											   window.paypalCheckoutReady = function () {
+											       paypal.checkout.setup('Your merchant id', {
+											           container: 'myContainer', //{String|HTMLElement|Array} where you want the PayPal button to reside
+											           environment: 'sandbox' //or 'production' depending on your environment
+											       });
+											   };
 
-										<script type="text/javascript">
-										   window.paypalCheckoutReady = function () {
-										       paypal.checkout.setup('Your merchant id', {
-										           container: 'myContainer', //{String|HTMLElement|Array} where you want the PayPal button to reside
-										           environment: 'sandbox' //or 'production' depending on your environment
-										       });
-										   };
-</script>
-<script src="//www.paypalobjects.com/api/checkout.js" async></script>
-										<?php endif; ?>
-							
-                                    </div>
+											</script>
+											<script src="//www.paypalobjects.com/api/checkout.js" async></script>
+											<?php endif; ?>
+											</p>
+										</div>
+							</div>
+                                    
 								
 							</section>
 							

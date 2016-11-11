@@ -36,12 +36,12 @@
 
             <!-- Header -->
             <header id="header" class="alt">
-                <a href="index.html"><img src = images/4753logo.png></a>
+                <a href="index.php"><img src = images/4753logo.png></a>
                 <nav id="nav">
                     <ul>
                         <li class="current"><a href="index.php">Home</a></li>
                         <li class="current"><a href="aboutus.html">About Us</a></li>
-                        <li><<a href="student_sign_in.php" class="button special">Sign Up</a></li>
+                        <li><a href="student_sign_in.php" class="button special">Sign Up</a></li>
                     </ul>
                 </nav>
             </header>
@@ -62,7 +62,7 @@
                         <br />
                         <br />
 
-                        Return to <a href="index.html">home page</a>.
+                        Return to <a href="index.php">home page</a>.
                     </div>
                     <br><br>
                 </div>

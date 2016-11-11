@@ -11,6 +11,10 @@
     } else {
         $environment = LIVE_ENV;
     }
+
+    if (session_id() == "")
+        session_start();
+
 ?>
 
 <!DOCTYPE HTML>
@@ -34,7 +38,7 @@
 
 			<!-- Header -->
 				<header id="header" class="alt">
-					<a href="index.html"><img src = images/4753logo.png></a>
+					<a href="index.php"><img src = images/4753logo.png></a>
 					<nav id="nav">
 						<ul>
 							<li class="current"><a href="index.php">Home</a></li>

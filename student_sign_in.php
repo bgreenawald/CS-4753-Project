@@ -104,11 +104,21 @@ if(isset($_POST['sendfeedback'])) {
     }else $stateErr = "";
     
     if(!preg_match('/^[0-9]{5}$/',$zip)){
-    	$zipErr = "Zip code must be 5 digets long";
+    	$zipErr = "Zip code must be 5 digits long";
     	$ziperror_css='border-color:red; border-width:medium';
     }else $zipErr = "";
+
+    if(!preg_match('/^[0-9]{16}$/',$ccnum)){
+    	$ccnumErr = "Credit Card number must be 16 digits long";
+    	$ccnumerror_css='border-color:red; border-width:medium';
+    }else $ccnumErr = "";
+
+    if(!preg_match('/^[0-9]{3}$/',$cvv)){
+    	$cvvErr = "ccv code must be 3 digits long";
+    	$cvverror_css='border-color:red; border-width:medium';
+    }else $cvvErr = "";
     
-	if(!$fnameErr && !$lnameErr && !$emailErr && !$addErr && !$cityErr && !$stateErr && !$zipErr){
+	if(!$fnameErr && !$lnameErr && !$emailErr && !$addErr && !$cityErr && !$stateErr && !$zipErr && !$cvvErr && !$ccnumErr){
 		$sql = "INSERT INTO `user_info`.`student` (`first-name`, `last-name`, `email`, `address`, `city`, `state`, `zip`, `ccnum`, `expdate`, `cvv`) 
 		VALUES ('$firstName', '$lastName', '$email', '$address', '$city', '$state', '$zip', '$ccnum', '$expdate', '$cvv');";
 		
@@ -116,17 +126,9 @@ if(isset($_POST['sendfeedback'])) {
 		if($connection->query($sql) == TRUE){
 			header('Location: success.php');
 		    echo "Success";
-		    $mail->addAddress($email);
-			if(!$mail->send()) {
-    			echo 'Message could not be sent.';
-				echo 'Mailer Error: ' . $mail->ErrorInfo;
-			} else {
-    			echo 'Message has been sent';
-			}
-		    mail($email, 'Welcome to Tix on Grounds', 'Thank you for signing up for tix on grounds!  Start searching for tickets today!');
 		} else{
 		    echo $connection->error;
-		    echo 'asdfadsfadfasf';
+		    echo 'Connectin error';
 		}
 		
 		$connection->close();
@@ -156,10 +158,10 @@ if(isset($_POST['sendfeedback'])) {
 
 			<!-- Header -->
 			<header id="header" class="alt">
-				<a href="index.html"><img src = images/4753logo.png></a>
+				<a href="index.php"><img src = images/4753logo.png></a>
 				<nav id="nav">
 					<ul>
-						<li class="current"><a href="index.html">Home</a></li>
+						<li class="current"><a href="index.php">Home</a></li>
 						<li class="current"><a href="aboutus.html">About Us</a></li>
 						<li><a href="#" class="button special">Sign Up</a></li>
 					</ul>
@@ -237,7 +239,7 @@ if(isset($_POST['sendfeedback'])) {
 							<li>
 								<h5>Banking Information</h5>
 								<div class="6u$ 12u$(xsmall)">
-									<input type="text" name="ccnum" id="ccnim" value="<?PHP if(isset($_POST['ccnum']) && !$ccnumErr) echo htmlspecialchars($_POST['ccnum']); ?>" 
+									<input type="text" name="ccnum" id="ccnum" value="<?PHP if(isset($_POST['ccnum']) && !$ccnumErr) echo htmlspecialchars($_POST['ccnum']); ?>" 
 									placeholder="<?PHP if($ccnumErr) echo $ccnumErr; else echo "Crecit Card Number"; ?>"
 									style="<?php echo $ccnumerror_css; ?>"
 									required/>

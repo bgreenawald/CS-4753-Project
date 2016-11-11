@@ -85,43 +85,33 @@
 
             <!-- Header -->
             <header id="header" class="alt">
-                <a href="index.html"><img src = images/4753logo.png></a>
+                <a href="index.php"><img src = images/4753logo.png></a>
                 <nav id="nav">
                     <ul>
-                        <li class="current"><a href="index.html">Home</a></li>
+                        <li class="current"><a href="index.php">Home</a></li>
                         <li class="current"><a href="aboutus.html">About Us</a></li>
-                        <li><<a href="student_sign_in.php" class="button special">Sign Up</a></li>
+                        <li><a href="student_sign_in.php" class="button special">Sign Up</a></li>
                     </ul>
                 </nav>
             </header>
             
             <!-- Main -->
             <center>
-                <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    <h4>
-                        <?php echo($payerFirstName.' '.$payerLastName.', Thank you for your Order!');?><br/><br/>
-                        Shipping Address: </h4>
-                        <?php echo($recipientName);?><br/>
-                        <?php echo($addressLine1);?><br/>
-                        <?php echo($addressLine2);?><br/>
-                        <?php echo($city);?><br/>
-                        <?php echo($state.'-'.$postalCode);?><br/>
-                        <?php echo($countryCode);?>
+                <div id="main" class="alt">
 
-                        <h4>Payment ID: <?php echo($paymentID);?> <br/>
-                Transaction ID : <?php echo($transactionID);?> <br/>
+                    <p>
+                        <?php echo($payerFirstName.' '.$payerLastName.', Thank you for your Order!');?><br/><br/>
+
+                        Payment ID: <?php echo($paymentID);?> <br/>
+                        Transaction ID : <?php echo($transactionID);?> <br/>
                         State : <?php echo($paymentState);?> <br/>
                         Total Amount: <?php echo($finalAmount);?> &nbsp;  <?php echo($currency);?> <br/>
-                    </h4>
+                    </p>
                     <br/>
-                    Return to <a href="index.html">home page</a>.
-                </div>
-                <div class="col-md-4"></div>
-            </div>
-                <div id="main" class="alt"></div>
-                    <h3> Sending Confirmation Email: </h3>
+                    Return to <a href="index.php">home page</a>.
+                
+           <!--     <div id="main" class="alt"></div> -->
+                    <p> Sending Confirmation Email. </p>
                     <?php
                         // the message
                         $msg = "Thank you for your order ".$payerFirstName.", your transaction number is ".$transactionID;
@@ -131,14 +121,8 @@
                         
                         // send email
                         mail($_SESSION['email'],"Thank you for your order",$msg);
-                        echo "sending";
                     ?>
                     <br><br>
-                </div>
-            </center>
-            
-            <center>
-                <div>
                     <a href="#" class = "button special">Browse Events! </a>
                     <a href="aboutus.html" class = "button special">Learn more!</a>
                     <br><br><br>
@@ -170,10 +154,3 @@
 
     </body>
 </html>
-
-<?php
-    if (session_id() !== "") {
-               session_unset();
-               session_destroy();
-            }
-?>
