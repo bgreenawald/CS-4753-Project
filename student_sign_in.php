@@ -1,4 +1,16 @@
 <?php 
+    if (session_id() == "")
+        session_start();
+        
+    $inout = "";
+	$inoutadd = "";
+	if (isset($_SESSION['login_user'])) {
+		$inout = "SIGN OUT";
+	 	$inoutadd = "signout.php"; 
+	} else{
+		$inoutadd = "signin.php";
+		$inout = "SIGN IN";
+	}
 //Connect to the database
 $host = "127.0.0.1";
 $name = "user_info";
@@ -8,9 +20,14 @@ $port = 3306;
 
 $connection = mysqli_connect($host, $user, $password, $name, $port) or die(mysql_error());
 
+echo $password;
+echo $password2;
+
 //Retrieve Our Information, checking if they have been set
 $firstName = isset($_POST["firstName"]) ? $_POST["firstName"] : '';
 $lastName = isset($_POST["lastName"]) ? $_POST["lastName"] : '';
+$password = isset($_POST["password"]) ? $_POST["password"] : '';
+$password2 = isset($_POST["password2"]) ? $_POST["password2"] : '';
 $email = isset($_POST["email"]) ? $_POST["email"] : '';
 $address = isset($_POST["address"]) ? $_POST["address"] : '';
 $city = isset($_POST["city"]) ? $_POST["city"] : '';
@@ -23,6 +40,8 @@ $cvv = isset($_POST['cvv']) ? $_POST['cvv'] : 0;
 //Null initialize our errors until they are set
 $fnameErr = "";
 $lnameErr = "";
+$passErr = "";
+$passErr2 = "";
 $emailErr = "";
 $addErr = "";
 $cityErr = "";
@@ -55,6 +74,11 @@ function before ($this, $inthat){
     return substr($inthat, 0, strpos($inthat, $this));
 };
 
+if($connection && !empty($_POST['email'])){
+		$email = $_POST['email'];
+		$result = mysqli_query($connection, "SELECT * FROM student WHERE email = '$email'");
+};
+
 if(isset($_POST['sendfeedback'])) {   
 	
     if(preg_match("/[^a-zA-Z\- ]/", $firstName) || !preg_match("/[a-zA-Z]/", $firstName)){
@@ -66,6 +90,15 @@ if(isset($_POST['sendfeedback'])) {
         $lnameErr = "Last name must not contain symbols or numbers and contain at least one letter";
         $lnerror_css='border-color:red ; border-width:medium';
     }else $lnameErr="";
+    
+    if($password != $password2){
+    	$passErr = "Passwords do not match";
+    	$passErr2 = "Passwords do not match";
+    	$passerror_css='border-color:red ; border-width:medium';
+    }else{
+    	$passErr = "";
+    	$passErr2 = "";
+    }
     
     if(!preg_match('/@/', $email)){
         $emailErr = "Email must contain a @";
@@ -82,10 +115,13 @@ if(isset($_POST['sendfeedback'])) {
     }elseif(!ctype_alpha(between('@', '.', $email)) || strlen(between('@', '.', $email))<2){
     	$emailErr = "Website name must be at least 2 characters";
     	$emailerror_css = 'border-color:red; border-width:medium';
-    }elseif(preg_match('/^@{1}$/',$zip)){
+    }elseif(preg_match('/^@{1}$/', $email)){
     	$emailErr = "Email cannot contain more than one @";
     	$emailerror_css = 'border-color:red; border-width:medium';
-    }else $emailErr ="";
+    }elseif(mysqli_num_rows($result) != 0){
+	    	$emailErr = "Email already registered, please sign in";
+	    	$emailerror_css = 'border-color:red; border-width:medium';
+	}else $emailErr ="";
     
     if(!preg_match("/[a-zA-Z]/", $address)){
 		$addErr = "Must contain at least one letter";
@@ -118,13 +154,14 @@ if(isset($_POST['sendfeedback'])) {
     	$cvverror_css='border-color:red; border-width:medium';
     }else $cvvErr = "";
     
-	if(!$fnameErr && !$lnameErr && !$emailErr && !$addErr && !$cityErr && !$stateErr && !$zipErr && !$cvvErr && !$ccnumErr){
-		$sql = "INSERT INTO `user_info`.`student` (`first-name`, `last-name`, `email`, `address`, `city`, `state`, `zip`, `ccnum`, `expdate`, `cvv`) 
-		VALUES ('$firstName', '$lastName', '$email', '$address', '$city', '$state', '$zip', '$ccnum', '$expdate', '$cvv');";
+	if(!$fnameErr && !$lnameErr && !$passErr && !$emailErr && !$addErr && !$cityErr && !$stateErr && !$zipErr && !$cvvErr && !$ccnumErr){
+		$sql = "INSERT INTO `user_info`.`student` (`first-name`, `last-name`, `password`, `email`, `address`, `city`, `state`, `zip`, `ccnum`, `expdate`, `cvv`) 
+		VALUES ('$firstName', '$lastName', '$password', '$email', '$address', '$city', '$state', '$zip', '$ccnum', '$expdate', '$cvv');";
 		
 		
 		if($connection->query($sql) == TRUE){
-			header('Location: success.php');
+			$_SESSION['login_user'] = $email;
+			header('Location: MemberHome.php');
 		    echo "Success";
 		} else{
 		    echo $connection->error;
@@ -133,6 +170,7 @@ if(isset($_POST['sendfeedback'])) {
 		
 		$connection->close();
 	}
+	
 }
 ?>
 <!DOCTYPE HTML>
@@ -161,9 +199,10 @@ if(isset($_POST['sendfeedback'])) {
 				<a href="index.php"><img src = images/4753logo.png></a>
 				<nav id="nav">
 					<ul>
-						<li class="current"><a href="index.php">Home</a></li>
-						<li class="current"><a href="aboutus.html">About Us</a></li>
-						<li><a href="#" class="button special">Sign Up</a></li>
+							<li class="current"><a href="index.php">Home</a></li>
+							<li class="current"><a href="aboutus.php">About Us</a></li>
+							<li class="current"><a href="<?PHP echo $inoutadd;?>"><?PHP echo $inout; ?></a></li>
+							<li><a href="student_sign_in.php" class="button special">Sign Up</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -195,6 +234,20 @@ if(isset($_POST['sendfeedback'])) {
 									<input type="text" name="lastName" id="lastName" value="<?PHP if(isset($_POST['lastName']) && !$lnameErr) echo htmlspecialchars($_POST['lastName']); ?>" 
 									placeholder="<?PHP if($lnameErr) echo $lnameErr; else echo "Last Name"; ?>" 
 									style="<?php echo $lnerror_css; ?>"
+									required/>
+								</div>
+								
+								<div class="6u 12u$(xsmall)">
+									<input type="password" name="password" id="password" value="<?PHP if(isset($_POST['password']) && !$passErr) echo htmlspecialchars($_POST['password']); ?>" 
+									placeholder="<?PHP if($passErr) echo $passErr; else echo "Password"; ?>" 
+									style="<?php echo $passerror_css; ?>"
+									required/>
+								</div>
+								
+								<div class="6u 12u$(xsmall)">
+									<input type="password" name="password2" id="password2" value="<?PHP if(isset($_POST['password2']) && !$passErr2) echo htmlspecialchars($_POST['password2']); ?>" 
+									placeholder="<?PHP if($passErr2) echo $passErr2; else echo "Re-enter password"; ?>" 
+									style="<?php echo $passerror_css; ?>"
 									required/>
 								</div>
 								
@@ -246,7 +299,7 @@ if(isset($_POST['sendfeedback'])) {
 								</div>
 								
 								<div class="6u$ 12u$(xsmall)">
-									<input type="date" name="expdate" id="expdate" value="<?PHP if(isset($_POST['expdate']) && !$exedateErr) echo htmlspecialchars($_POST['expdate']); ?>" 
+									<input type="date" name="expdate" min="<?php echo date("Y-m-d"); ?>" id="expdate" value="<?PHP if(isset($_POST['expdate']) && !$exedateErr) echo htmlspecialchars($_POST['expdate']); ?>" 
 									placeholder="<?PHP if($exedateErr) echo $exedateErr; else echo "Expiration Date"; ?>"
 									style="<?php echo $exedateerror_css; ?>"
 									required/>

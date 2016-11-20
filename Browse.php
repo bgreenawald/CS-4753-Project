@@ -1,3 +1,17 @@
+<?php 
+    if (session_id() == "")
+        session_start();
+        
+    $inout = "";
+	$inoutadd = "";
+	if (isset($_SESSION['login_user'])) {
+		$inout = "SIGN OUT";
+	 	$inoutadd = "signout.php"; 
+	} else{
+		$inoutadd = "signin.php";
+		$inout = "SIGN IN";
+	}
+?>
 <!DOCTYPE HTML>
 <!--
 	Forty by HTML5 UP
@@ -6,13 +20,10 @@
 -->
 <html>
 	<head>
-		<title>Browse</title>
+		<title>Member Home</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body>
 
@@ -25,7 +36,8 @@
 					<nav id="nav">
 						<ul>
 							<li class="current"><a href="index.php">Home</a></li>
-							<li class="current"><a href="aboutus.html">About Us</a></li>
+							<li class="current"><a href="aboutus.php">About Us</a></li>
+							<li class="current"><a href="<?PHP echo $inoutadd;?>"><?PHP echo $inout; ?></a></li>
 							<li><a href="student_sign_in.php" class="button special">Sign Up</a></li>
 						</ul>
 					</nav>
@@ -50,35 +62,21 @@
 											  </thead>
 											  <tbody>
 											    <tr>
-											      <td><a href="Event1.php">Event1 Name</a></td>
+											      <td><a href="Event1.php">Event1</a></td>
 											      <td>Event 1 will involve a demonstration of some sort or something</td>
 											      <td>Some day @ some time</td>
 											      <td>Rice</td>
 											      <td>$1.00</td>
 											    </tr>
-											    <!--
 											    <tr>
-											      <td>Event2</td>
-											      <td>Event 2 will be a sonet reading by Ali </td>
-											      <td>Whenever</td>
-											      <td>Your doorstep</td>
-											      <td>Priceless</td>
-											    </tr>-->
+											      <td><a href="Event2.php">Event2</a></td>
+											      <td>Event 2 will involve a more complex demonstration of some sort or something</td>
+											      <td>Some day @ some time</td>
+											      <td>Olsson</td>
+											      <td>$1.50</td>
+											    </tr>
 											    </tbody>
-										</table>
-										    
-									<!--
-												<div class = "event" >
-													<a class="image featured"><img style="width:10%; height:10%" src="http://www.griffinpondanimalshelter.com/wp-content/uploads/2014/10/toyota-event-bunny-photos-11.jpg" alt="" /></a>
-													<h5> Event Name</h5>
-													<p>price: $1.00</p>
-																				
-													<a class="image featured"><img style="width:10%; height:10%" src="http://www.griffinpondanimalshelter.com/wp-content/uploads/2014/10/toyota-event-bunny-photos-11.jpg" alt="" /></a>
-													<h5> Event Name</h5>
-													<p>price: $1.00</p>
-											
-											</center></div>
-									-->	
+										</table>	
 									</div>
 								</div>
 							</section>

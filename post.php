@@ -22,7 +22,7 @@
 
 <html>
 	<head>
-		<title>Sign In</title>
+		<title>Post an Event</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -51,7 +51,10 @@
 			<!-- Main -->
 			<center>
 				<div id="main" class="alt"></div>
-					<h3> You have successfully signed up!</h3>
+				<div style="margin-right:150px;margin-left:150px; font-size: 25px;">
+					<p>Organizations that wish to post an event on <i>Tix on Grounds</i> should email us at <underline>tixongrounds@gmail.com</underline>.	</p>
+					<p>Within the email, include your Organization's name, a picture for the event (if relevent), the event name, time, location, ticket cost and extended description.</p>
+					<p>You must have a Tix on Grounds Organization account to post events.</p>
 					<br><br>
 				</div>
 			</center>

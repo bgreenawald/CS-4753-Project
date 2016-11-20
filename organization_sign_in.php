@@ -1,5 +1,16 @@
 <?php 
-
+    if (session_id() == "")
+        session_start();
+        
+    $inout = "";
+	$inoutadd = "";
+	if (isset($_SESSION['login_user'])) {
+		$inout = "SIGN OUT";
+	 	$inoutadd = "signout.php"; 
+	} else{
+		$inoutadd = "signin.php";
+		$inout = "SIGN IN";
+	}
 //Connect to the database
 $host = "127.0.0.1";
 $name = "user_info";
@@ -24,11 +35,7 @@ $addErr = "";
 $cityErr = "";
 $stateErr = "";
 $zipErr = "";
-/* TODO:
-	might want to change messages themselves
-	once we decide on a correct format (Callie) will update organization_sign_in.php
-	might want to move organizational sign up link
-*/
+
 
 /*current checks include
 	name (first and last) all letters
@@ -103,7 +110,8 @@ if(isset($_POST['sendfeedback'])) {
 		
 		
 		if($connection->query($sql) == TRUE){
-			header('Location: success.php');
+			$_SESSION['login_user'] = $email;
+			header('Location: MemberHome.php');
 		} else{
 		    echo $connection->error;
 		}
@@ -137,9 +145,10 @@ if(isset($_POST['sendfeedback'])) {
 				<a href="index.php"><img src = images/4753logo.png></a>
 				<nav id="nav">
 					<ul>
-						<li class="current"><a href="index.php">Home</a></li>
-						<li class="current"><a href="aboutus.html">About Us</a></li>
-						<li><a href="student_sign_in.php" class="button special">Sign Up</a></li>
+							<li class="current"><a href="index.php">Home</a></li>
+							<li class="current"><a href="aboutus.php">About Us</a></li>
+							<li class="current"><a href="<?PHP echo $inoutadd;?>"><?PHP echo $inout; ?></a></li>
+							<li><a href="student_sign_in.php" class="button special">Sign Up</a></li>
 					</ul>
 				</nav>
 			</header>

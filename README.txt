@@ -12,3 +12,8 @@ Use a server such as XAMPP (https://www.apachefriends.org/index.php) to be able 
    The php_code_folder_name is the name of the folder under which the downloaded code resides ('Checkout' folder in case you have not changed the default name).
 
 5) Read further instructions on the above page you open.
+
+Notes on Milestone 4:
+* putting name in MemberHome
+* white space at bottom of About Us page, etc
+* Should we log people out if they exit?

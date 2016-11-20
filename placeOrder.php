@@ -4,6 +4,16 @@
     */
     if (session_id() == "")
         session_start();
+        
+    $inout = "";
+	$inoutadd = "";
+	if (isset($_SESSION['login_user'])) {
+		$inout = "SIGN OUT";
+	 	$inoutadd = "signout.php"; 
+	} else{
+		$inoutadd = "signin.php";
+		$inout = "SIGN IN";
+	}
 
     include('utilFunctions.php');
     include('paypalFunctions.php');
@@ -51,9 +61,10 @@
                 <a href="index.php"><img src = images/4753logo.png></a>
                 <nav id="nav">
                     <ul>
-                        <li class="current"><a href="index.php">Home</a></li>
-                        <li class="current"><a href="aboutus.html">About Us</a></li>
-                        <li><a href="student_sign_in.php" class="button special">Sign Up</a></li>
+							<li class="current"><a href="index.php">Home</a></li>
+							<li class="current"><a href="aboutus.php">About Us</a></li>
+							<li class="current"><a href="<?PHP echo $inoutadd;?>"><?PHP echo $inout; ?></a></li>
+							<li><a href="student_sign_in.php" class="button special">Sign Up</a></li>
                     </ul>
                 </nav>
             </header>

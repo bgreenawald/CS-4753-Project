@@ -14,6 +14,16 @@
 
     if (session_id() == "")
         session_start();
+        
+    $inout = "";
+	$inoutadd = "";
+	if (isset($_SESSION['login_user'])) {
+		$inout = "SIGN OUT";
+	 	$inoutadd = "signout.php"; 
+	} else{
+		$inoutadd = "signin.php";
+		$inout = "SIGN IN";
+	}
 
 ?>
 
@@ -42,7 +52,8 @@
 					<nav id="nav">
 						<ul>
 							<li class="current"><a href="index.php">Home</a></li>
-							<li class="current"><a href="aboutus.html">About Us</a></li>
+							<li class="current"><a href="aboutus.php">About Us</a></li>
+							<li class="current"><a href="<?PHP echo $inoutadd;?>"><?PHP echo $inout; ?></a></li>
 							<li><a href="student_sign_in.php" class="button special">Sign Up</a></li>
 						</ul>
 					</nav>
@@ -188,13 +199,6 @@
 
 								</div>
 							</div>
-<!--
-							<footer class="major">
-								<ul class="buttons">
-									<li><a href="#" class="button">See More</a></li>
-								</ul>
-							</footer>
--->
 						</section>
 
 				</article>
@@ -208,8 +212,8 @@
 					</header>
 					<footer>
 						<ul class="buttons">
-							<li><a href="#" class="button special">Post Event</a></li>
-							<li><a href="Browse.html" class="button special">Find Event</a></li>
+							<li><a href="post.php" class="button special">Post Event</a></li>
+							<li><a href="Browse.php" class="button special">Find Events</a></li>
 						</ul>
 					</footer>
 

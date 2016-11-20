@@ -13,7 +13,7 @@
 	}
 
 	$quantity = "";
-	$price = number_format(1.00, 2, '.', ',');
+	$price = number_format(1.50, 2, '.', ',');
 	$result = "";
 	$emailErr="";
 	$emailerror_css="";
@@ -45,6 +45,7 @@
 		}
 	}
 
+
 	$connection->close();
 
 ?>
@@ -57,10 +58,13 @@
 <html>
 	<head>
 
-		<title>Event1</title>
+		<title>Event2</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body>
 
@@ -87,11 +91,11 @@
 							<section id="one">
 								<div class="inner">
 									<header class="major">
-										<h1><font size="10">Event1</font></h1>
+										<h1><font size="10">Event2</font></h1>
 									</header>
 									<div style="margin:100px; margin-top:0px">
                                         <p style="float: left;padding:25px"><img src="http://archive.thesabre.com/wahoowa/wallpaper/images/vsabres1280.jpg" height="200px" width="250px" border="1px"></p>
-                                        <br><br><p>This is the extended description of Event1.  It's a really great event, you should buy a ticket, it will be so great.  Seriously you will really want to come.  words words words Seriously words words words I mean you will love it, I really encourage you to come.  It is only $1 so you should buy it. This is the extended description of Event1.  It's a really great event, you should buy a ticket, it will be so great.  Seriously you will really want to come.  words words words Seriously words words words I mean you will love it, I really encourage you to come.  It is only $1 so you should buy it.</p>
+                                        <br><br><p>This is the extended description of Event2.  It's a really great event, you should buy a ticket, it will be so great.  Seriously you will really want to come.  words words words Seriously words words words I mean you will love it, I really encourage you to come.  It is only $1 so you should buy it. This is the extended description of Event2.  It's a really great event, you should buy a ticket, it will be so great.  Seriously you will really want to come.  words words words Seriously words words words I mean you will love it, I really encourage you to come.  It is only $1 so you should buy it.</p>
                                     </div>
                                     <div style="margin:150px">
                                     	<form method="POST" action="<?PHP echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" accept-charset="UTF-8">
@@ -129,7 +133,7 @@
 										  </tfoot>
 										</table>
 										<p style="float:left; margin-top:-50px"><ul>
-                                    		<li>Location: Rice Hall</li>
+                                    		<li>Location: Olsson Hall</li>
                                     		<li>Date/Time: Somewhere sometime</li>
                                     	</ul>
                                     	</p>

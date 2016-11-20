@@ -51,15 +51,15 @@
 			<!-- Main -->
 			<center>
 				<div id="main" class="alt"></div>
-					<h3> You have successfully signed up!</h3>
+					<h3> You have successfully signed in!</h3>
 					<br><br>
 				</div>
 			</center>
 			
 			<center>
 			    <div>
-			        <a href="Browse.php" class = "button special">Browse Events! </a>
-					<a href="aboutus.php" class = "button special">Learn more!</a>
+			        <a href="Browse.html" class = "button special">Browse Events! </a>
+					<a href="aboutus.html" class = "button special">Learn more!</a>
 			        <br><br><br>
 			    </div>
 			</center>

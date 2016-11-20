@@ -6,6 +6,17 @@
     if (session_id() == "")
         session_start();
 
+$inout = "";
+$inoutadd = "";
+if (isset( $_SESSION['login_user'] )) {
+	$inout = "SIGN OUT";
+ 	$inoutadd = "signout.php"; 
+} else{
+	$inoutadd = "signin.php";
+	$inout = "SIGN IN";
+}
+
+
     
     $arr = $_SESSION["error"];
     
@@ -39,9 +50,10 @@
                 <a href="index.php"><img src = images/4753logo.png></a>
                 <nav id="nav">
                     <ul>
-                        <li class="current"><a href="index.php">Home</a></li>
-                        <li class="current"><a href="aboutus.html">About Us</a></li>
-                        <li><a href="student_sign_in.php" class="button special">Sign Up</a></li>
+							<li class="current"><a href="index.php">Home</a></li>
+							<li class="current"><a href="aboutus.php">About Us</a></li>
+							<li class="current"><a href="<?PHP echo $inoutadd;?>"><?PHP echo $inout; ?></a></li>
+							<li><a href="student_sign_in.php" class="button special">Sign Up</a></li>
                     </ul>
                 </nav>
             </header>
@@ -70,8 +82,8 @@
             
             <center>
                 <div>
-                    <a href="Browse.html" class = "button special">Browse Events! </a>
-                    <a href="aboutus.html" class = "button special">Learn more!</a>
+                    <a href="Browse.php" class = "button special">Browse Events! </a>
+                    <a href="aboutus.php" class = "button special">Learn more!</a>
                     <br><br><br>
                 </div>
             </center>
