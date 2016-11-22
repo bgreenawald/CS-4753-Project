@@ -14,9 +14,6 @@
 
 	$quantity = "";
 	$price = number_format(1.00, 2, '.', ',');
-	$result = "";
-	$emailErr="";
-	$emailerror_css="";
 	$total = number_format(0.00, 2, '.', ',');
 
 	//Start our database
@@ -28,22 +25,11 @@
 
 	$connection = mysqli_connect($host, $user, $password, $name, $port) or die(mysql_error());
 
-	if($connection && !empty($_POST['email'])){
-		$email = $_POST['email'];
-		$result = mysqli_query($connection, "SELECT * FROM student WHERE email = '$email'");
-		$count = mysqli_num_rows($result);
-		if($count == 1 ){
-			if (!empty($_POST["quantity"])) {
-			   $quantity = $_POST["quantity"];
-			   $total = number_format((floatval($quantity) * floatval($price)), 2, '.', ',');
-			  }
-			$emailErr="";
-			$emailerror_css="";
-		}else{
-			$emailErr = "Email not found in database";
-			$emailerror_css='border-color:red; border-width:medium';
-		}
+	if (!empty($_POST["quantity"])) {
+	   $quantity = $_POST["quantity"];
+	   $total = number_format((floatval($quantity) * floatval($price)), 2, '.', ',');
 	}
+	
 
 	$connection->close();
 
@@ -113,7 +99,7 @@
 										      <td>Total</td>
 										      <td><?PHP echo ('$'.$total); ?></td>
 										    </tr>
-										    <tr>
+										    <!--<tr>
 										    	<td>Confirmation Email</td>
 										    	<td><input type="text" name="email" id="email" value="<?PHP if(isset($_POST['email']) && !$emailErr) echo htmlspecialchars($_POST['email']); ?>" 
 													placeholder="<?PHP if($emailErr) echo $emailErr; else echo "Email"; ?>"
@@ -121,7 +107,7 @@
 													required/>
 												</td>
 
-										    </tr>
+										    </tr>-->
 										    <tr>
 										    	<td></td>
 										    	<td><input type="submit" value="select quantity" class="button" ></td>
@@ -134,15 +120,13 @@
                                     	</ul>
                                     	</p>
                                     	</form>
-                      					<br>
-                                    	
 
                                     	<div style="text-align: right; margin-right:250px">
 											<p>
-											<?php if (isset($email) && !$emailErr && !isset($_SESSION['login_user'])) :?>
+											<?php if (!isset($_SESSION['login_user'])) :?>
 												<h3 style="color:red; margin-right:-100px ">	Must login in order to purchase ticket</h3>
 												<?php endif; ?>
-											<?php if(isset($email) && !$emailErr && isset($_SESSION['login_user'])) : ?>
+											<?php if( isset($_SESSION['login_user'])) : ?>
 												<form id="myContainer" action="startPayment.php" method="POST">
 											    <input type="hidden" name="csrf" value="<?php echo($_SESSION['csrf']);?>"/>
 											    <input type="hidden" name="camera_amount" value="<?php echo($_POST['quantity']);?>" readonly></input><br>

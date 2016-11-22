@@ -134,7 +134,7 @@
                         mail($_SESSION['email'],"Thank you for your order",$msg);
                     ?>
                     <br><br>
-                    <a href="#" class = "button special">Browse Events! </a>
+                    <a href="Browse.php" class = "button special">Browse Events! </a>
                     <a href="aboutus.php" class = "button special">Learn more!</a>
                     <br><br><br>
                 </div>

@@ -2,9 +2,26 @@
 //Connect to the database
 include("config.php");
 session_start();
+
+//Connect to the database
+$host = "127.0.0.1";
+$name = "user_info";
+$password = "";
+$user = "root";
+$port = 3306;
+
+$connection = mysqli_connect($host, $user, $password, $name, $port) or die(mysql_error());
+
 //Retrieve Our Information, checking if they have been set
 $password = isset($_POST["password"]) ? $_POST["password"] : '';
 $email = isset($_POST["email"]) ? $_POST["email"] : '';
+
+$sql="";
+$sql2="";
+$count=0;
+$count2=0;
+$result="";
+$result2="";
 
 //Null initialize our errors until they are set
 
@@ -20,21 +37,56 @@ $emailErr = "";
 		$inout = "SIGN IN";
 	}
 
+$stu = 'unchecked';
+$org = 'unchecked';
+
+
+$selected_radio = $_POST['s/o'];
+
+if ($selected_radio == 'student') {
+	$stu = 'checked';
+}
+else if ($selected_radio == 'organization') {
+	$org = 'checked';
+}
 
 if(isset($_POST['sendfeedback'])) {   
     $myusername = mysqli_real_escape_string($connection,$email);
 	$mypassword = mysqli_real_escape_string($connection,$password);
-	$sql = "SELECT * FROM student WHERE email = '$myusername' AND password = '$mypassword'";
-	$result = mysqli_query($connection,$sql);
+
+	if($stu == 'checked'){
+		$sql = "SELECT * FROM student WHERE email = '$myusername' AND password = '$mypassword'";
+		$sql2 = "SELECT * FROM student WHERE email = '$myusername'";
+	}else{
+		$sql = "SELECT * FROM organization WHERE email = '$myusername' AND password = '$mypassword'";
+		$sql2 = "SELECT * FROM organizatoin WHERE email = '$myusername'";
+		
+	}
 	
+	$result = mysqli_query($connection,$sql);
+	$result2 = mysqli_query($connection,$sql2);
+	$count2 = mysqli_num_rows($result2);
 	$count = mysqli_num_rows($result);
+	
 	if($count == 1){
 		$_SESSION['login_user'] = $email;
-		$_SESSION['name']= $sql['first-name'];
-		header('Location: MemberHome.php');
+		$row = $result->fetch_assoc();
+		if ($stu == "checked"){
+			$_SESSION['name']= $row['firstname'];
+		}else{
+			$_SESSION['name']= $row['name'];
+		}
+		$_SESSION['email']=$row['email'];
+		if ($stu=="checked"){
+			header('Location: MemberHome.php');
+		}else{
+			header('Location: OrganizationHome.php');
+		}
 	} else{
-	    $emailErr = "Email not in database";
-        $emailerror_css='border-color:red; border-width:medium';
+	    if ($count2 !=1){
+	    	$emailErr = "Email not in database";
+        	$emailerror_css='border-color:red; border-width:medium';
+	    }
         $passwordErr = "Incorrect password/email combination";
 		$passworderror_css='border-color:red; border-width:medium';
 	}
@@ -115,7 +167,20 @@ if(isset($_POST['sendfeedback'])) {
 								<br>
 							<!--div-->
 							</li>
-							<!--<div id= "BankingInfo">-->
+							<!--<div id= "Student/Organization radio buttons">-->
+							<FORM name ="form1" method ="post" action ="radioButton.php">
+
+								<Input type = 'Radio' Name ='s/o' value= 'student' checked
+								<?PHP print $stu; ?>
+								>Student
+								
+								<Input type = 'Radio' Name ='s/o' value= 'organization' 
+								<?PHP print $org; ?>
+								>Organization
+									
+								<P>
+							
+							</FORM>
 
 							<!-- Break -->
 							<div class="12u$">

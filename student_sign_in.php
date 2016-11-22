@@ -155,12 +155,14 @@ if(isset($_POST['sendfeedback'])) {
     }else $cvvErr = "";
     
 	if(!$fnameErr && !$lnameErr && !$passErr && !$emailErr && !$addErr && !$cityErr && !$stateErr && !$zipErr && !$cvvErr && !$ccnumErr){
-		$sql = "INSERT INTO `user_info`.`student` (`first-name`, `last-name`, `password`, `email`, `address`, `city`, `state`, `zip`, `ccnum`, `expdate`, `cvv`) 
+		$sql = "INSERT INTO `user_info`.`student` (`firstname`, `lastname`, `password`, `email`, `address`, `city`, `state`, `zip`, `ccnum`, `expdate`, `cvv`) 
 		VALUES ('$firstName', '$lastName', '$password', '$email', '$address', '$city', '$state', '$zip', '$ccnum', '$expdate', '$cvv');";
 		
 		
 		if($connection->query($sql) == TRUE){
 			$_SESSION['login_user'] = $email;
+			$_SESSION['name']= $firstName;
+			$_SESSION['email']= $email;
 			header('Location: MemberHome.php');
 		    echo "Success";
 		} else{

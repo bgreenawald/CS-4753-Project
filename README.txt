@@ -13,7 +13,5 @@ Use a server such as XAMPP (https://www.apachefriends.org/index.php) to be able 
 
 5) Read further instructions on the above page you open.
 
-Notes on Milestone 4:
-* putting name in MemberHome
-* white space at bottom of About Us page, etc
-* Should we log people out if they exit?
+Changes:
+*organization home page

@@ -22,15 +22,19 @@ $connection = mysqli_connect($host, $user, $password, $name, $port) or die(mysql
 
 //Retrieve Our Information
 
-$name = isset($_POST["name"]) ? $_POST['email'] : '';
+$name = isset($_POST["name"]) ? $_POST['name'] : '';
 $email = isset($_POST["email"]) ? $_POST["email"] : '';
 $address = isset($_POST["address"]) ? $_POST["address"] : '';
+$password = isset($_POST["password"]) ? $_POST["password"] : '';
+$password2 = isset($_POST["password2"]) ? $_POST["password2"] : '';
 $city = isset($_POST["city"]) ? $_POST["city"] : '';
 $state = isset($_POST["state"]) ? $_POST["state"] : '';
 $zip = isset($_POST["zip"]) ? $_POST["zip"] : 0;
 
 $nameErr = "";
 $emailErr = "";
+$passErr = "";
+$passErr2 = "";
 $addErr = "";
 $cityErr = "";
 $stateErr = "";
@@ -60,6 +64,11 @@ function before ($this, $inthat){
     return substr($inthat, 0, strpos($inthat, $this));
 };
 
+if($connection && !empty($_POST['email'])){
+		$email = $_POST['email'];
+		$result = mysqli_query($connection, "SELECT * FROM organization WHERE email = '$email'");
+};
+
 if(isset($_POST['sendfeedback'])) { 
 	
 	if(!preg_match("/[a-zA-Z]/", $name)){
@@ -82,7 +91,22 @@ if(isset($_POST['sendfeedback'])) {
     }elseif(!ctype_alpha(between('@', '.', $email)) || strlen(between('@', '.', $email))<2){
     	$emailErr = "Website name must be at least 2 characters";
     	$emailerror_css = 'border-color:red; border-width:medium';
-    }else $emailErr ="";
+    }elseif(preg_match('/^@{1}$/', $email)){
+    	$emailErr = "Email cannot contain more than one @";
+    	$emailerror_css = 'border-color:red; border-width:medium';
+    }elseif(mysqli_num_rows($result) != 0){
+	    	$emailErr = "Email already registered, please sign in";
+	    	$emailerror_css = 'border-color:red; border-width:medium';
+	}else $emailErr ="";
+    
+    if($password != $password2){
+    	$passErr = "Passwords do not match";
+    	$passErr2 = "Passwords do not match";
+    	$passerror_css='border-color:red ; border-width:medium';
+    }else{
+    	$passErr = "";
+    	$passErr2 = "";
+    }
     
     if(!preg_match("/[a-zA-Z]/", $address)){
 		$addErr = "Must contain at least one letter";
@@ -104,13 +128,15 @@ if(isset($_POST['sendfeedback'])) {
     	$ziperror_css='border-color:red; border-width:medium';
     }else $zipErr = "";
     
-	if(!$nameErr && !$emailErr && !$addErr && !$cityErr && !$stateErr && !$zipErr){
-		$sql = "INSERT INTO `user_info`.`organization` (`name`, `email`, `address`, `city`, `state`, `zip`) 
-        VALUES ('$name', '$email', '$address', '$city', '$state', '$zip');";
+	if(!$nameErr && !$emailErr && !$addErr && !$cityErr && !$stateErr && !$zipErr && !$passErr && !$passErr2){
+		$sql = "INSERT INTO `user_info`.`organization` (`name`, `email`, `password`, `address`, `city`, `state`, `zip`) 
+        VALUES ('$name', '$email', '$password', '$address', '$city', '$state', '$zip');";
 		
 		
 		if($connection->query($sql) == TRUE){
 			$_SESSION['login_user'] = $email;
+			$_SESSION['name']= $name;
+			$_SESSION['email']= $email;
 			header('Location: MemberHome.php');
 		} else{
 		    echo $connection->error;
@@ -173,6 +199,21 @@ if(isset($_POST['sendfeedback'])) {
 								<input type="text" name="email" id="email" value="<?PHP if(isset($_POST['email']) && !$emailErr) echo htmlspecialchars($_POST['email']); ?>" 
 								placeholder="<?PHP if($emailErr) echo $emailErr; else echo "Email"; ?>"
 								style="<?php echo $emailerror_css; ?>" 
+								required/>
+							</div>
+							
+								
+							<div class="6u 12u$(xsmall)">
+								<input type="password" name="password" id="password" value="<?PHP if(isset($_POST['password']) && !$passErr) echo htmlspecialchars($_POST['password']); ?>" 
+								placeholder="<?PHP if($passErr) echo $passErr; else echo "Password"; ?>" 
+								style="<?php echo $passerror_css; ?>"
+								required/>
+							</div>
+							
+							<div class="6u 12u$(xsmall)">
+								<input type="password" name="password2" id="password2" value="<?PHP if(isset($_POST['password2']) && !$passErr2) echo htmlspecialchars($_POST['password2']); ?>" 
+								placeholder="<?PHP if($passErr2) echo $passErr2; else echo "Re-enter password"; ?>" 
+								style="<?php echo $passerror_css; ?>"
 								required/>
 							</div>
 
