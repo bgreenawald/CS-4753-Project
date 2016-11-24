@@ -137,7 +137,7 @@ if(isset($_POST['sendfeedback'])) {
 			$_SESSION['login_user'] = $email;
 			$_SESSION['name']= $name;
 			$_SESSION['email']= $email;
-			header('Location: MemberHome.php');
+			header('Location: OrganizationHome.php');
 		} else{
 		    echo $connection->error;
 		}

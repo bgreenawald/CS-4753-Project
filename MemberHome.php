@@ -55,36 +55,36 @@
 										<h1><font size="10">Hello <?PHP echo $_SESSION['name']; ?>!</font></h1>
 									</header>
 									<div style="margin:100px; margin-top:0px">
-									<h2>Based on your previous purchases, We suggest this event:</h2>
-										<a href="Event2.php"><h2 style="margin-left:50px; margin-bottom:-20px">Event2</h2>
-                                        <p style="float: left;padding:25px; "><img src="http://archive.thesabre.com/wahoowa/wallpaper/images/vsabres1280.jpg" height="200px" width="250px" border="1px"></p>
-                                        <br><p style="width:75%;">Description: <br>Event 2 will involve a more complex demonstration of some sort or something<br>Review:<br>
-                                        "If you liked Event 1, you'll REALLY like Event 2.  Honestly has all the great aspects that Event 1 had, but even better.  You will receive a much deeper understanding and ... "</p>
-                                    	</a>
+									<h2>Based on your previous purchases, We suggest:</h2>
+										<a href="Event2.php"><h2 style="margin-left:50px; margin-bottom:-20px">The Addams Family</h2></a>
+                                        <p style="float: left;padding:25px; "><img src="images/addams.jpg" height="200px" width="250px" border="1px"></p><br>
+                                        <h4>Description:</h4>The latest production by the First Year Players<br><br><h4>Review:</h4>
+                                        "This is the best play that FYP has done in years. It has been really great to see the orgnaization evolve during my time on grounds and this is the best thing they have produced ... "
+                                    	
                                     </div>
-									<div style="margin:100px">
+									<div style="margin:100px" class="table-wrapper">
 										<h2>Browse More Events</h2>
-										<table>
+										<table style="float:right">
 											<thead>
 											    <tr>
-											      <th scope="col" >Event </th>
-											      <th scope="col">Description</th>
-											      <th scope="col"> Date/time</th>
-											      <th scope="col">Location</th>
-											      <th scope="col">Price</th>
+											      <th>Event </th>
+											      <th>Description</th>
+											      <th> Date/time</th>
+											      <th>Location</th>
+											      <th>Price</th>
 											    </tr>
 											  </thead>
 											  <tbody>
 											    <tr>
-											      <td><a href="Event1.php">Event1    </a></td>
-											      <td>Event 1 will involve a demonstration of some sort or something</td>
-											      <td>Some day @ some time</td>
-											      <td>Rice</td>
-											      <td>$1.00</td>
+											      <td><a href="Event1.php">Shoot for the Moon    </a></td>
+											      <td>Gamma Phi Betas philanthropy 5 on 5 soccer tournament.</td>
+											      <td>November 30th, 2-5 pm</td>
+											      <td>Mad Bowl</td>
+											      <td>$5.00 per player</td>
 											    </tr>											    <tr>
-											      <td><a href="Event2.php">Event2    </a></td>
-											      <td>Event 2 will involve a more complex demonstration of some sort or something</td>
-											      <td>Some day @ some time</td>
+											      <td><a href="Event2.php">ACM present Abhi Shelat   </a></td>
+											      <td>The Association for Computing Machinery is hosting a talk from associate professor Abhi Shelat. Professor Shelat will be talking how his post-graduate life ...</td>
+											      <td>Dec 7, 5-6 pm </td>
 											      <td>Olsson</td>
 											      <td>$1.50</td>
 											    </tr>

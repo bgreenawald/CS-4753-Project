@@ -13,7 +13,7 @@
 	}
 
 	$quantity = "";
-	$price = number_format(1.00, 2, '.', ',');
+	$price = number_format(5.00, 2, '.', ',');
 	$total = number_format(0.00, 2, '.', ',');
 
 	//Start our database
@@ -73,11 +73,11 @@
 							<section id="one">
 								<div class="inner">
 									<header class="major">
-										<h1><font size="10">Event1</font></h1>
+										<h1><font size="10">Shoot for the Moon</font></h1>
 									</header>
 									<div style="margin:100px; margin-top:0px">
-                                        <p style="float: left;padding:25px"><img src="http://archive.thesabre.com/wahoowa/wallpaper/images/vsabres1280.jpg" height="200px" width="250px" border="1px"></p>
-                                        <br><br><p>This is the extended description of Event1.  It's a really great event, you should buy a ticket, it will be so great.  Seriously you will really want to come.  words words words Seriously words words words I mean you will love it, I really encourage you to come.  It is only $1 so you should buy it. This is the extended description of Event1.  It's a really great event, you should buy a ticket, it will be so great.  Seriously you will really want to come.  words words words Seriously words words words I mean you will love it, I really encourage you to come.  It is only $1 so you should buy it.</p>
+                                        <p style="float: left;padding:25px"><img src="images/soccer.jpg" height="200px" width="250px" border="1px"></p>
+                                        <br><br><p>Gamma Phi Beta is putting on their 3rd annual shoot for the moon, 5x5 soccer tournament benefitting Girls on the Run, a transformational learning program for young girls. The event has been a huge success in the past, and we are expecting the biggest turnout ever, so buy your tickets now!</p>
                                     </div>
                                     <div style="margin:150px">
                                     	<form method="POST" action="<?PHP echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" accept-charset="UTF-8">

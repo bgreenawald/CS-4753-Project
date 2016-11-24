@@ -59,7 +59,7 @@ if(isset($_POST['sendfeedback'])) {
 		$sql2 = "SELECT * FROM student WHERE email = '$myusername'";
 	}else{
 		$sql = "SELECT * FROM organization WHERE email = '$myusername' AND password = '$mypassword'";
-		$sql2 = "SELECT * FROM organizatoin WHERE email = '$myusername'";
+		$sql2 = "SELECT * FROM organization WHERE email = '$myusername'";
 		
 	}
 	

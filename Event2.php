@@ -80,8 +80,8 @@
 										<h1><font size="10">Event2</font></h1>
 									</header>
 									<div style="margin:100px; margin-top:0px">
-                                        <p style="float: left;padding:25px"><img src="http://archive.thesabre.com/wahoowa/wallpaper/images/vsabres1280.jpg" height="200px" width="250px" border="1px"></p>
-                                        <br><br><p>This is the extended description of Event2.  It's a really great event, you should buy a ticket, it will be so great.  Seriously you will really want to come.  words words words Seriously words words words I mean you will love it, I really encourage you to come.  It is only $1 so you should buy it. This is the extended description of Event2.  It's a really great event, you should buy a ticket, it will be so great.  Seriously you will really want to come.  words words words Seriously words words words I mean you will love it, I really encourage you to come.  It is only $1 so you should buy it.</p>
+                                        <p style="float: left;padding:25px"><img src="images/abhi.jpeg" height="200px" width="250px" border="1px"></p>
+                                        <br><br><p>The Association for Computing Machinery is hosting a talk from associate professor Abhi Shelat. Professor Shelat will be talking how his post-graduate life applying his computational skills to the financial markets, and his recent works in applying cryptography to create secure and anonymous polls. </p>
                                     </div>
                                     <div style="margin:150px">
                                     	<form method="POST" action="<?PHP echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" accept-charset="UTF-8">
