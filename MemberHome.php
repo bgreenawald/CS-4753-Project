@@ -56,15 +56,15 @@
 									</header>
 									<div style="margin:100px; margin-top:0px">
 									<h2>Based on your previous purchases, We suggest:</h2>
-										<a href="Event2.php"><h2 style="margin-left:50px; margin-bottom:-20px">The Addams Family</h2></a>
+										<a href="AddamsFamily.php"><h2 style="margin-left:50px; margin-bottom:-20px">The Addams Family</h2></a>
                                         <p style="float: left;padding:25px; "><img src="images/addams.jpg" height="200px" width="250px" border="1px"></p><br>
                                         <h4>Description:</h4>The latest production by the First Year Players<br><br><h4>Review:</h4>
                                         "This is the best play that FYP has done in years. It has been really great to see the orgnaization evolve during my time on grounds and this is the best thing they have produced ... "
                                     	
                                     </div>
-									<div style="margin:100px" class="table-wrapper">
+									<div style="margin:100px">
 										<h2>Browse More Events</h2>
-										<table style="float:right">
+										<table ><!--style="float:right"-->
 											<thead>
 											    <tr>
 											      <th>Event </th>
@@ -82,9 +82,9 @@
 											      <td>Mad Bowl</td>
 											      <td>$5.00 per player</td>
 											    </tr>											    <tr>
-											      <td><a href="Event2.php">ACM present Abhi Shelat   </a></td>
+											      <td><a href="Event2.php">ACM presents Abhi Shelat   </a></td>
 											      <td>The Association for Computing Machinery is hosting a talk from associate professor Abhi Shelat. Professor Shelat will be talking how his post-graduate life ...</td>
-											      <td>Dec 7, 5-6 pm </td>
+											      <td>Dec 7th, 5-6 pm </td>
 											      <td>Olsson</td>
 											      <td>$1.50</td>
 											    </tr>

@@ -77,7 +77,7 @@
 							<section id="one">
 								<div class="inner">
 									<header class="major">
-										<h1><font size="10">Event2</font></h1>
+										<h1><font size="10">ACM presents Abhi Shelat</font></h1>
 									</header>
 									<div style="margin:100px; margin-top:0px">
                                         <p style="float: left;padding:25px"><img src="images/abhi.jpeg" height="200px" width="250px" border="1px"></p>
@@ -111,7 +111,7 @@
 										</table>
 										<p style="float:left; margin-top:-50px"><ul>
                                     		<li>Location: Olsson Hall</li>
-                                    		<li>Date/Time: Somewhere sometime</li>
+                                    		<li>Date/Time: December 7th, 2-5pm</li>
                                     	</ul>
                                     	</p>
                                     	</form>

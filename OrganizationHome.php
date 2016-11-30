@@ -58,7 +58,7 @@
 	
 									<div style="margin:50px" class="table-wrapper">
 									<center><h2>Users have left reviews on your recent events!</h2></center>
-										<table style="float:right">
+										<table><!--style="float:right"-->
 											<thead>
 												<tr>
 													<th>User</th>
