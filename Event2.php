@@ -111,7 +111,7 @@
 										</table>
 										<p style="float:left; margin-top:-50px"><ul>
                                     		<li>Location: Olsson Hall</li>
-                                    		<li>Date/Time: December 7th, 2-5pm</li>
+                                    		<li>Date/Time: December 7th, 5-6 pm</li>
                                     	</ul>
                                     	</p>
                                     	</form>

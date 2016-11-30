@@ -64,6 +64,15 @@
                                     </div>
 									<div style="margin:100px">
 										<h2>Browse More Events</h2>
+										<style>
+											table, th, td {
+    											border: 1px solid black;
+											}
+											th, td {
+											    padding: 15px;
+											    text-align: center;
+											}
+										</style>
 										<table ><!--style="float:right"-->
 											<thead>
 											    <tr>
@@ -80,13 +89,21 @@
 											      <td>Gamma Phi Betas philanthropy 5 on 5 soccer tournament.</td>
 											      <td>November 30th, 2-5 pm</td>
 											      <td>Mad Bowl</td>
-											      <td>$5.00 per player</td>
-											    </tr>											    <tr>
+											      <td>$5.00</td>
+											    </tr>
+											    <tr>
 											      <td><a href="Event2.php">ACM presents Abhi Shelat   </a></td>
 											      <td>The Association for Computing Machinery is hosting a talk from associate professor Abhi Shelat. Professor Shelat will be talking how his post-graduate life ...</td>
-											      <td>Dec 7th, 5-6 pm </td>
+											      <td>Decemer 7th, 5-6 pm </td>
 											      <td>Olsson</td>
 											      <td>$1.50</td>
+											    </tr>
+											    <tr>
+											      <td><a href="AddamsFamily.php">The Addams Family </a></td>
+											      <td>The latest production of FYP</td>
+											      <td>November 19th, 7 pm</td>
+											      <td>Student Activities Center</td>
+											      <td>$5.00</td>
 											    </tr>
 											    </tbody>
 										</table>

@@ -50,33 +50,50 @@
 							<section id="one">
 								<div class="inner">
 									<div style="margin:100px">
-										<table>
+										<style>
+											table, th, td {
+    											border: 1px solid black;
+											}
+											th, td {
+											    padding: 15px;
+											    text-align: center;
+											}
+										</style>
+										<table ><!--style="float:right"-->
 											<thead>
 											    <tr>
-											      <th scope="col" >Event</th>
-											      <th scope="col">Description</th>
-											      <th scope="col"> Date/time</th>
-											      <th scope="col">Location</th>
-											      <th scope="col">Price</th>
+											      <th>Event </th>
+											      <th>Description</th>
+											      <th> Date/time</th>
+											      <th>Location</th>
+											      <th>Price</th>
 											    </tr>
 											  </thead>
 											  <tbody>
 											    <tr>
-											      <td><a href="Event1.php">Event1</a></td>
-											      <td>Event 1 will involve a demonstration of some sort or something</td>
-											      <td>Some day @ some time</td>
-											      <td>Rice</td>
-											      <td>$1.00</td>
+											      <td><a href="Event1.php">Shoot for the Moon    </a></td>
+											      <td>Gamma Phi Betas philanthropy 5 on 5 soccer tournament.</td>
+											      <td>November 30th, 2-5 pm</td>
+											      <td>Mad Bowl</td>
+											      <td>$5.00</td>
 											    </tr>
 											    <tr>
-											      <td><a href="Event2.php">Event2</a></td>
-											      <td>Event 2 will involve a more complex demonstration of some sort or something</td>
-											      <td>Some day @ some time</td>
+											      <td><a href="Event2.php">ACM presents Abhi Shelat   </a></td>
+											      <td>The Association for Computing Machinery is hosting a talk from associate professor Abhi Shelat. Professor Shelat will be talking how his post-graduate life ...</td>
+											      <td>Decemer 7th, 5-6 pm </td>
 											      <td>Olsson</td>
 											      <td>$1.50</td>
 											    </tr>
+											    <tr>
+											      <td><a href="AddamsFamily.php">The Addams Family </a></td>
+											      <td>The latest production of FYP</td>
+											      <td>November 19th, 7 pm</td>
+											      <td>Student Activities Center</td>
+											      <td>$5.00</td>
+											    </tr>
 											    </tbody>
-										</table>	
+										</table>
+							
 									</div>
 								</div>
 							</section>

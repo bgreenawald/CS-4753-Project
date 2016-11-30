@@ -58,6 +58,15 @@
 	
 									<div style="margin:50px" class="table-wrapper">
 									<center><h2>Users have left reviews on your recent events!</h2></center>
+										<style>
+											table, th, td {
+    											border: 1px solid black;
+											}
+											th, td {
+											    padding: 15px;
+											    text-align: center;
+											}
+										</style>
 										<table><!--style="float:right"-->
 											<thead>
 												<tr>

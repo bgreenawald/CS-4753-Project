@@ -43,7 +43,7 @@
 <html>
 	<head>
 
-		<title>Addams Family</title>
+		<title>The Addams Family</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -73,11 +73,11 @@
 							<section id="one">
 								<div class="inner">
 									<header class="major">
-										<h1><font size="10">Shoot for the Moon</font></h1>
+										<h1><font size="10">The Addams Family</font></h1>
 									</header>
 									<div style="margin:100px; margin-top:0px">
-                                        <p style="float: left;padding:25px"><img src="images/soccer.jpg" height="200px" width="250px" border="1px"></p>
-                                        <br><br><p>Gamma Phi Beta is putting on their 3rd annual shoot for the moon, 5x5 soccer tournament benefitting Girls on the Run, a transformational learning program for young girls. The event has been a huge success in the past, and we are expecting the biggest turnout ever, so buy your tickets now!</p>
+                                        <p style="float: left;padding:25px"><img src="images/addams.jpg" height="200px" width="250px" border="1px"></p>
+                                        <br><br><p>The latest production by First Year Players! FYP is a student run theatre organization on grounds that produces one musical per semester featuring a cast exclusively made up of first years in the university. First Year Players has previously produced the shows <i>"Cabaret," "Merrily We Roll Along," and "The Producers."</i></p>
                                     </div>
                                     <div style="margin:150px">
                                     	<form method="POST" action="<?PHP echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" accept-charset="UTF-8">
@@ -115,8 +115,8 @@
 										  </tfoot>
 										</table>
 										<p style="float:left; margin-top:-50px"><ul>
-                                    		<li>Location: Mad Bowl </li>
-                                    		<li>Date/Time: November 30th, 2-5pm</li>
+                                    		<li>Location: Student Activities Center </li>
+                                    		<li>Date/Time: November 19th, 7 pm</li>
                                     	</ul>
                                     	</p>
                                     	</form>
