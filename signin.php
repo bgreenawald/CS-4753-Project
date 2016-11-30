@@ -41,7 +41,7 @@ $stu = 'unchecked';
 $org = 'unchecked';
 
 
-$selected_radio = $_POST['s/o'];
+$selected_radio = isset($_POST['s/o']) ? $_POST['s/o'] : '';
 
 if ($selected_radio == 'student') {
 	$stu = 'checked';

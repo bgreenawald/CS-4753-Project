@@ -13,7 +13,7 @@
 	}
 
 	$quantity = "";
-	$price = number_format(1.50, 2, '.', ',');
+	$price = number_format(1.00, 2, '.', ',');
 
 	$total = number_format(0.00, 2, '.', ',');
 
@@ -116,24 +116,18 @@
                                     	</p>
                                     	</form>
 
-                                    	<div style="text-align: right; margin-right:250px">
-											<p>
-											<?php if (!isset($_SESSION['login_user'])) :?>
-												<h3 style="color:red; margin-right:-100px ">	Must login in order to purchase ticket</h3>
-												<?php endif; ?>
-											<?php if(isset($_SESSION['login_user'])) : ?>
-												<form id="myContainer" action="startPayment.php" method="POST">
-											    <input type="hidden" name="csrf" value="<?php echo($_SESSION['csrf']);?>"/>
-											    <input type="hidden" name="camera_amount" value="<?php echo($_POST['quantity']);?>" readonly></input><br>
-											    <input type="hidden" name="tax" value="0" readonly></input>
-											    <input type="hidden" name="insurance" value="0" readonly></input>
-											    <input type="hidden" name="handling_fee" value="0" readonly></input>
-											    <input type="hidden" name="estimated_shipping" value="0" readonly></input>
-											    <input type="hidden" name="shipping_discount" value="0" readonly></input>
-											    <input type="hidden" name="total_amount" value="0" readonly></input>
-											    <input type="hidden" name="currencyCodeType" value="USD" readonly></input>
-											</form>
-											
+                                    	<form id="myContainer" action="startPayment.php" method="POST">
+										    <input type="hidden" name="csrf" value="<?php echo($_SESSION['csrf']);?>"/>
+										    <input type="hidden" name="camera_amount" value="<?php echo($_POST['quantity']);?>" readonly></input><br>
+										    <input type="hidden" name="tax" value="0" readonly></input><br>
+										    <input type="hidden" name="insurance" value="0" readonly></input><br>
+										    <input type="hidden" name="handling_fee" value="0" readonly></input><br>
+										    <input type="hidden" name="estimated_shipping" value="0" readonly></input><br>
+										    <input type="hidden" name="shipping_discount" value="0" readonly></input><br>
+										    <input type="hidden" name="total_amount" value="0" readonly></input><br>
+										    <input type="hidden" name="currencyCodeType" value="USD" readonly></input><br>
+										</form>
+                               
 											<script type="text/javascript">
 											   window.paypalCheckoutReady = function () {
 											       paypal.checkout.setup('Your merchant id', {
@@ -141,12 +135,8 @@
 											           environment: 'sandbox' //or 'production' depending on your environment
 											       });
 											   };
-
 											</script>
 											<script src="//www.paypalobjects.com/api/checkout.js" async></script>
-											<?php endif; ?>
-											</p>
-										</div>
 							</div>
                                     
 								
