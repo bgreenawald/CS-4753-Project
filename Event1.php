@@ -8,6 +8,7 @@
 		$inout = "SIGN OUT";
 	 	$inoutadd = "signout.php"; 
 	} else{
+		header('Location:Browse.php');
 		$inoutadd = "signin.php";
 		$inout = "SIGN IN";
 	}
@@ -116,11 +117,13 @@
 										</table>
 										<p style="float:left; margin-top:-50px"><ul>
                                     		<li>Location: Mad Bowl </li>
-                                    		<li>Date/Time: November 30th, 2-5pm</li>
+                                    		<li>Date/Time: November 30th, 2-5 pm</li>
                                     	</ul>
                                     	</p>
                                     	</form>
 
+                                    	<div style="text-align: right; margin-right:250px">
+											<p>								
                                     	<form id="myContainer" action="startPayment.php" method="POST">
 										    <input type="hidden" name="csrf" value="<?php echo($_SESSION['csrf']);?>"/>
 										    <input type="hidden" name="camera_amount" value="<?php echo($_POST['quantity']);?>" readonly></input><br>
@@ -142,7 +145,8 @@
 											   };
 											</script>
 											<script src="//www.paypalobjects.com/api/checkout.js" async></script>
-								
+										</p>
+									</div>
 							</div>
                                     
 								

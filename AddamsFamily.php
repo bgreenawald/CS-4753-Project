@@ -8,6 +8,7 @@
 		$inout = "SIGN OUT";
 	 	$inoutadd = "signout.php"; 
 	} else{
+		header('Location: Browse.php');
 		$inoutadd = "signin.php";
 		$inout = "SIGN IN";
 	}

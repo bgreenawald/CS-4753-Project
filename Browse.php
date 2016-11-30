@@ -93,7 +93,7 @@
 											    </tr>
 											    </tbody>
 										</table>
-							
+									<p> * Must be signed in to view event pages</p>
 									</div>
 								</div>
 							</section>
