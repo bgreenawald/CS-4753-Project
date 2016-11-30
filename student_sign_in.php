@@ -20,9 +20,6 @@ $port = 3306;
 
 $connection = mysqli_connect($host, $user, $password, $name, $port) or die(mysql_error());
 
-echo $password;
-echo $password2;
-
 //Retrieve Our Information, checking if they have been set
 $firstName = isset($_POST["firstName"]) ? $_POST["firstName"] : '';
 $lastName = isset($_POST["lastName"]) ? $_POST["lastName"] : '';
