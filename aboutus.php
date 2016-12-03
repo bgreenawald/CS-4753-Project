@@ -72,8 +72,10 @@
 									please reach out to us. 
 									<br><br><br>
 									Contact us: ac8pn@virginia.edu, cap4yf@virginia.edu, bhg5yd@virginia.edu</p>
+								</div>
 								
 							</section>
+					</div>
 							
 			<!-- CTA -->
 				<section id="cta">
@@ -83,21 +85,18 @@
 							<li><a href="student_sign_in.php" class="button special">Sign Up</a></li>
 						</ul>
 					</footer>
-
 				</section>
-
 			<!-- Footer -->
 				<!-- Footer -->
 					<footer id="footer">
-						<div class="inner">
+						<!--<div class="inner">-->
 							<ul class="copyright">
 								<li>Tix On Grounds</li>
 								<li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
 								
 							</ul>
-						</div>
+						
 					</footer>
-
 		</div>
 
 		<!-- Scripts -->
@@ -108,6 +107,5 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
-
 	</body>
 </html>

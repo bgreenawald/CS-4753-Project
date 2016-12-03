@@ -4,7 +4,7 @@
         
     $inout = "";
 	$inoutadd = "";
-	if (isset($_SESSION['login_user'])) {
+	if (isset($_SESSION['login_user']) && $_SESSION['stu/org']=="organization") {
 		$inout = "SIGN OUT";
 	 	$inoutadd = "signout.php"; 
 	} else{
@@ -92,17 +92,26 @@
 													<td>A fun way to spend Friday night!</td>
 												</tr>
 											</tbody>
+											<tbody>
+												<tr>
+													<td>Ali Cheraghpour</td>
+													<td>Shoot for the Moon</td>
+													<td>A/5</td>
+													<td>Much wow!!!</td>
+												</tr>
+											</tbody>
 										</table>
 										
-                                     	<center><a href="#"><h3>See more reviews!</h3></a></center>
+                                     	<!--<center><a href="#"><h3>See more reviews!</h3></a></center>-->
                                     </div>
                        
 									<div>
 										<ul class="buttons">
-											<center><li><a href="#" style = "margin-bottom:10px" class="button special">Post some new events</a></li></center>
+											<center><li><a href="post.php" style = "margin-bottom:10px" class="button special">Post some new events</a></li></center>
 										</ul>
 									</div>
 									
+								</div>
 								</div>
 								
 							</section>

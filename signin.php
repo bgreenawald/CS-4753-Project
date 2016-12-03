@@ -73,8 +73,10 @@ if(isset($_POST['sendfeedback'])) {
 		$row = $result->fetch_assoc();
 		if ($stu == "checked"){
 			$_SESSION['name']= $row['firstname'];
+			$_SESSION['stu/org']= "student";
 		}else{
 			$_SESSION['name']= $row['name'];
+			$_SESSION['stu/org'] = "organization";
 		}
 		$_SESSION['email']=$row['email'];
 		if ($stu=="checked"){

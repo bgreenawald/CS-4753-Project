@@ -14,7 +14,7 @@
 	}
 
 	$quantity = "";
-	$price = number_format(5.00, 2, '.', ',');
+	$price = number_format(1.00, 2, '.', ',');
 	$total = number_format(0.00, 2, '.', ',');
 
 	//Start our database

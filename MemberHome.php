@@ -4,7 +4,7 @@
         
     $inout = "";
 	$inoutadd = "";
-	if (isset($_SESSION['login_user'])) {
+	if (isset($_SESSION['login_user']) && $_SESSION['stu/org']=="student") {
 		$inout = "SIGN OUT";
 	 	$inoutadd = "signout.php"; 
 	} else{
@@ -89,21 +89,21 @@
 											      <td>Gamma Phi Betas philanthropy 5 on 5 soccer tournament.</td>
 											      <td>November 30th, 2-5 pm</td>
 											      <td>Mad Bowl</td>
-											      <td>$5.00</td>
+											      <td>$1.00</td>
 											    </tr>
 											    <tr>
 											      <td><a href="Event2.php">ACM presents Abhi Shelat   </a></td>
 											      <td>The Association for Computing Machinery is hosting a talk from associate professor Abhi Shelat. Professor Shelat will be talking how his post-graduate life ...</td>
 											      <td>Decemer 7th, 5-6 pm </td>
 											      <td>Olsson</td>
-											      <td>$1.50</td>
+											      <td>$1.00</td>
 											    </tr>
 											    <tr>
 											      <td><a href="AddamsFamily.php">The Addams Family </a></td>
 											      <td>The latest production of FYP</td>
 											      <td>November 19th, 7 pm</td>
 											      <td>Student Activities Center</td>
-											      <td>$5.00</td>
+											      <td>$1.00</td>
 											    </tr>
 											    </tbody>
 										</table>
@@ -111,6 +111,7 @@
 									</div>
 								</div>
 							</section>
+							</div>
 						
 						
 			<!-- CTA -->
